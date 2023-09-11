@@ -3,7 +3,7 @@ name: CI
 on: [push]
 
 jobs:
-  build:
+  all:
 
     runs-on: ubuntu-latest
 
@@ -22,7 +22,7 @@ jobs:
       run: npm ci
     - name: tsc build
       run: npm run build
-    - name: lint
-      run: npm run lint
+    - name: prettier check
+      run: npm run format:check
     - name: tests
       run: npm run test

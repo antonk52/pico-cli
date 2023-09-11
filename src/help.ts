@@ -54,7 +54,7 @@ export function help(
   cliName: string,
   subcommands: [string] | [],
   rootSpec: ProgramSpec<any>,
-  commands: Record<string, CommandSpec<any, any>>
+  commands: Record<string, CommandSpec<any, any>>,
 ): string {
   const lines: string[] = [];
   const flagsSpec: Options = { ...rootSpec.options };
@@ -76,7 +76,7 @@ export function help(
     "USAGE:",
     `${INDENT}${cliName} ${subcommands.join(" ")} ${
       arg ? nameify(arg) : ""
-    }`.trimEnd()
+    }`.trimEnd(),
   );
 
   const commandsEntries = Object.entries(commands);
@@ -88,7 +88,7 @@ export function help(
         const arg = cmdSpec.reqArgName;
         const line = `${INDENT}${name}${arg ? ` ${nameify(arg)}` : ""}`;
         return tableRow(line, cmdSpec.description);
-      })
+      }),
     );
   }
 
@@ -102,7 +102,7 @@ export function help(
           fSpec.handler === Boolean ? "" : ` ${nameify(name)}`
         }`;
         return tableRow(line, fSpec.description);
-      })
+      }),
     );
   }
 

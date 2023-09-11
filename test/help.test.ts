@@ -79,7 +79,7 @@ describe("help function", () => {
           OPTIONS:
               --global-opt    available for all subcommands
           "
-        `
+        `,
     );
   });
 
@@ -99,7 +99,7 @@ describe("help function", () => {
               --global-opt    available for all subcommands
               --bar-only      only foo bar cmd
           "
-        `
+        `,
     );
   });
 
@@ -127,7 +127,7 @@ describe("help function", () => {
                               that also has a few spaces so only one line will stick out from the
                               descriopton, you should not write your documentation like this.
           "
-        `
+        `,
     );
   });
 

@@ -9,7 +9,7 @@ import type {
 
 function parseArguments<F extends Options>(
   rawArgs: string[],
-  optsSpec: F
+  optsSpec: F,
 ): OptionsToParams<F> {
   const optsUtils = {
     toParamName: {} as Record<string, keyof F>,
@@ -44,12 +44,12 @@ function parseArguments<F extends Options>(
         } else {
           if (i === rawArgs.length - 1) {
             throw new PicoCli.Error(
-              `Option "${rawValue}" expects a value, but got none`
+              `Option "${rawValue}" expects a value, but got none`,
             );
           }
           result[paramName] = optionSpec.handler(
             rawArgs[i + 1],
-            result[paramName]
+            result[paramName],
           );
           i++;
           found = true;
@@ -60,12 +60,12 @@ function parseArguments<F extends Options>(
         const optionSpec = optsSpec[paramName];
         if (optionSpec.handler == Boolean) {
           throw new PicoCli.Error(
-            `Provided a value for a boolean option ${knownFlag}`
+            `Provided a value for a boolean option ${knownFlag}`,
           );
         }
         result[paramName] = optionSpec.handler(
           rawValue.slice(knownFlag.length + 1),
-          result[paramName]
+          result[paramName],
         );
         found = true;
         break;
@@ -80,14 +80,14 @@ function parseArguments<F extends Options>(
     .join(", ");
   if (nonProvidedRequiredFlags) {
     throw new PicoCli.Error(
-      `Required options are not provided: ${nonProvidedRequiredFlags}`
+      `Required options are not provided: ${nonProvidedRequiredFlags}`,
     );
   }
   return result;
 }
 function resolveCommandName<T extends string>(
   commands: Record<T, CommandSpec<any, any>>,
-  wantedCmd: string
+  wantedCmd: string,
 ): T | null {
   if (wantedCmd in commands) return wantedCmd as T;
 
@@ -108,11 +108,11 @@ export class PicoCli<GlobOpts extends Options> {
 
   addCommand<CmdOpts extends Options | void>(
     name: string,
-    spec: CommandSpec<CmdOpts, GlobOpts>
+    spec: CommandSpec<CmdOpts, GlobOpts>,
   ): PicoCli<GlobOpts> {
     if (!/^[\w\d_-]*$/i.test(name)) {
       throw new PicoCli.Error(
-        `Command names can only contain letters, digits, underscores, and hyphens. Got "${name}"`
+        `Command names can only contain letters, digits, underscores, and hyphens. Got "${name}"`,
       );
     }
     this.commands[name] = spec;
@@ -128,7 +128,7 @@ export class PicoCli<GlobOpts extends Options> {
       }
       this.out(help(this.spec.name, [], this.spec, this.commands));
       const msg = `Expected one of known commands: ${Object.keys(
-        this.commands
+        this.commands,
       ).join(", ")}`;
       throw new PicoCli.Error(msg);
     }
@@ -156,7 +156,7 @@ export class PicoCli<GlobOpts extends Options> {
       prev.push(...val.split(","));
 
       return prev;
-    }
+    },
   );
 
   static Error = class PicoCliError extends Error {};

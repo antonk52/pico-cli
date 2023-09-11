@@ -11,7 +11,12 @@
     "format:check": "prettier -c ./src/*.ts ./test/*.ts",
     "format:fix": "prettier -w ./src/*.ts ./test/*.ts"
   },
-  "keywords": [],
+  "keywords": ["cli", "typescript", "zero-dependencies"],
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/antonk52/pico-cli"
+  },
+  "bugs": "https://github.com/antonk52/pico-cli/issues",
   "author": "anotnk52",
   "license": "MIT",
   "files": [

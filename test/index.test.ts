@@ -62,23 +62,23 @@ describe("lilo-cli", () => {
 
   test("Throws for unknown subcommand", () => {
     expect(() => cliWithGlobalAndCmdOptions.run(["zoo"])).toThrowError(
-      "Expected one of known commands: foo"
+      "Expected one of known commands: foo",
     );
     expect(calledParams).toEqual({});
   });
 
   test("Throws when required flags are not provided", () => {
     expect(() => cliWithGlobalAndCmdOptions.run(["foo"])).toThrowError(
-      "Required options are not provided"
+      "Required options are not provided",
     );
     expect(calledParams).toEqual({});
   });
 
   test("Throws when an option doesn't get a value", () => {
     expect(() =>
-      cliWithGlobalAndCmdOptions.run(["foo", "--f-string-required"])
+      cliWithGlobalAndCmdOptions.run(["foo", "--f-string-required"]),
     ).toThrowError(
-      'Option "--f-string-required" expects a value, but got none'
+      'Option "--f-string-required" expects a value, but got none',
     );
 
     fooCalled = false;
@@ -90,7 +90,7 @@ describe("lilo-cli", () => {
         "foo",
         "--f-string-required=bar",
         "--global-bool=bar",
-      ])
+      ]),
     ).toThrowError("Provided a value for a boolean option --global-bool");
 
     fooCalled = false;
@@ -105,9 +105,9 @@ describe("lilo-cli", () => {
       }).addCommand("foo bar", {
         description: "abc",
         handler: () => {},
-      })
+      }),
     ).toThrowError(
-      'Command names can only contain letters, digits, underscores, and hyphens. Got "foo bar"'
+      'Command names can only contain letters, digits, underscores, and hyphens. Got "foo bar"',
     );
   });
 
@@ -219,7 +219,7 @@ describe("lilo-cli", () => {
           "42",
           "other",
           "params",
-        ])
+        ]),
     ).not.toThrowError();
 
     expect(fooCalled).toBe(true);

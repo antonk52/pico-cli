@@ -1,11 +1,11 @@
 import { describe, expect, test } from "vitest";
-import { LiloCli } from "../src/index";
+import { PicoCli } from "../src/index";
 
 describe("lilo-cli", () => {
   let fooCalled = false;
   let calledParams: object = {};
 
-  const cliWithGlobalAndCmdOptions = LiloCli.create({
+  const cliWithGlobalAndCmdOptions = PicoCli.create({
     name: "test",
     description: "description",
     options: {
@@ -98,7 +98,7 @@ describe("lilo-cli", () => {
 
   test("Throws when a command contains non allowed chars", () => {
     expect(() =>
-      LiloCli.create({
+      PicoCli.create({
         name: "foo",
         description: "",
         options: {},
@@ -151,7 +151,7 @@ describe("lilo-cli", () => {
     let cliParams = {};
 
     expect(() =>
-      LiloCli.create({
+      PicoCli.create({
         name: "test",
         description: "test description",
         options: {},
@@ -177,17 +177,17 @@ describe("lilo-cli", () => {
               description: "description",
             },
             f_string_skipped: {
-              handler: LiloCli.commaSeparatedString,
+              handler: PicoCli.commaSeparatedString,
               names: ["--f-string-skipped"],
               description: "description",
             },
             f_string_array: {
-              handler: LiloCli.commaSeparatedString,
+              handler: PicoCli.commaSeparatedString,
               names: ["--f-string-array"],
               description: "description",
             },
             f_string_array_eq: {
-              handler: LiloCli.commaSeparatedString,
+              handler: PicoCli.commaSeparatedString,
               names: ["--f-string-array-eq"],
               description: "description",
             },

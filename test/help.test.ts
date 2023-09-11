@@ -1,11 +1,11 @@
 import { describe, expect, test } from "vitest";
-import { LiloCli } from "../src/index";
+import { PicoCli } from "../src/index";
 import { help } from "../src/help";
 
 const noop = () => {};
 
 describe("help function", () => {
-  const foo = LiloCli.create({
+  const foo = PicoCli.create({
     name: "foo",
     description: "test cli description",
     options: {
@@ -132,7 +132,7 @@ describe("help function", () => {
   });
 
   test("required only argument help", () => {
-    const cli = LiloCli.create({
+    const cli = PicoCli.create({
       name: "foo",
       description: "A command that expects one argument",
       options: {},
@@ -168,7 +168,7 @@ describe("help function", () => {
   });
 
   test("required multiple argument help", () => {
-    const cli = LiloCli.create({
+    const cli = PicoCli.create({
       name: "foo",
       description: "A command that expects arguments",
       options: {},

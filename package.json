@@ -1,6 +1,6 @@
 {
   "name": "pico-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Typescript first / zero dependencies CLI framework",
   "main": "dist/index.js",
   "scripts": {
@@ -11,10 +11,14 @@
     "format:check": "prettier -c ./src/*.ts ./test/*.ts",
     "format:fix": "prettier -w ./src/*.ts ./test/*.ts"
   },
-  "keywords": ["cli", "typescript", "zero-dependencies"],
+  "keywords": [
+    "cli",
+    "typescript",
+    "zero-dependencies"
+  ],
   "repository": {
-      "type": "git",
-      "url": "https://github.com/antonk52/pico-cli"
+    "type": "git",
+    "url": "https://github.com/antonk52/pico-cli"
   },
   "bugs": "https://github.com/antonk52/pico-cli/issues",
   "author": "anotnk52",

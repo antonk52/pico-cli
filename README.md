@@ -17,7 +17,7 @@ PicoCli.create({
     name: 'my-cli',
     description: 'My cli is used to do X and Y',
     options: {
-        // TODO: deocument options
+        // TODO: document options
     },
 })
 // you can chain adding commands to your cli

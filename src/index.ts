@@ -152,10 +152,10 @@ export class PicoCli<GlobOpts extends Options> {
   static create = <T extends Options>(spec: ProgramSpec<T>) =>
     new PicoCli<T>(spec);
 
-  static flagHandler = <T>(handler: OptionHandler<T>): OptionHandler<T> =>
+  static optionHandler = <T>(handler: OptionHandler<T>): OptionHandler<T> =>
     handler;
 
-  static commaSeparatedString = PicoCli.flagHandler<string[]>(
+  static commaSeparatedString = PicoCli.optionHandler<string[]>(
     (val, prev = []) => {
       prev.push(...val.split(","));
 

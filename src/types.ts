@@ -9,6 +9,7 @@ export type OptionSpec = {
   description: string;
   handler: OptionHandler;
   required?: true;
+  noCascade?: true;
 };
 export type Options = {
   [optionName: string]: OptionSpec;
@@ -25,13 +26,19 @@ export type OptionsToParams<T extends Options> = {
   [K in keyof T]: OptReturnType<T[K]>;
 } & { _: string[] };
 
+export type OnlyCascadingOptions<T extends Options> = {
+  [K in keyof T]: T[K]["noCascade"] extends true ? never : K;
+}[keyof T];
+
 type AllOptionsToParams<
   CmdOpts extends Options | void,
   GlobOpts extends Options | void,
 > = { _: string[] } & (CmdOpts extends Options
   ? GlobOpts extends Options
     ? {
-        [K in keyof GlobOpts | keyof CmdOpts]: K extends keyof CmdOpts
+        [K in
+          | OnlyCascadingOptions<GlobOpts>
+          | keyof CmdOpts]: K extends keyof CmdOpts
           ? OptReturnType<CmdOpts[K]>
           : K extends keyof GlobOpts
           ? OptReturnType<GlobOpts[K]>

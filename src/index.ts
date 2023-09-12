@@ -98,6 +98,8 @@ function resolveCommandName<T extends string>(
   return null;
 }
 const hasHelp = (xs: string[]) => xs.some((x) => x === "--help" || x === "-h");
+const filterNoCascadeOptions = (opts: Options): Options =>
+  Object.fromEntries(Object.entries(opts).filter(([_, v]) => !v.noCascade));
 
 export class PicoCli<GlobOpts extends Options> {
   commands: Record<string, CommandSpec<any, GlobOpts>> = {};
@@ -125,7 +127,7 @@ export class PicoCli<GlobOpts extends Options> {
     if (wantedCommand === null) {
       if (hasHelp(args)) {
         return this.out(help(this.spec.name, [], this.spec, this.commands));
-      } else if (typeof this.spec.handler === 'function') {
+      } else if (typeof this.spec.handler === "function") {
         return this.spec.handler(parseArguments(args, this.spec.options));
       }
       this.out(help(this.spec.name, [], this.spec, this.commands));
@@ -140,7 +142,7 @@ export class PicoCli<GlobOpts extends Options> {
 
     const command = this.commands[wantedCommand];
     const params = parseArguments(rest, {
-      ...("options" in this.spec && this.spec.options),
+      ...filterNoCascadeOptions(this.spec?.options ?? {}),
       ...command.options,
     });
 

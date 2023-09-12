@@ -69,4 +69,9 @@ export type ProgramSpec<T extends Options> = {
   options: T;
   /** Used in generated help */
   description: string;
+  /**
+   * If specified, the cli will call it without checking for subcommands
+   * Otherwise, a help with usage examples is printed
+   */
+  handler?: (params: OptionsToParams<T>) => void | Promise<void>;
 };

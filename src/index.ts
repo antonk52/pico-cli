@@ -125,6 +125,8 @@ export class PicoCli<GlobOpts extends Options> {
     if (wantedCommand === null) {
       if (hasHelp(args)) {
         return this.out(help(this.spec.name, [], this.spec, this.commands));
+      } else if (typeof this.spec.handler === 'function') {
+        return this.spec.handler(parseArguments(args, this.spec.options));
       }
       this.out(help(this.spec.name, [], this.spec, this.commands));
       const msg = `Expected one of known commands: ${Object.keys(

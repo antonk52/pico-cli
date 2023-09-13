@@ -48,7 +48,7 @@ PicoCli.create({
 
 TODO
 
-### `PicoCli.flagHandler`
+### `PicoCli.optionHandler`
 
 TODO
 
